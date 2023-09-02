@@ -7,11 +7,8 @@ from src.services.base import BaseService
 class ProjectService(BaseService):
     repo = ProjectRepository
 
-    def add_contract(self, contract: Contract, project) -> bool:
-        if (contract.finished_at is None
-                or contract.status != Status.ACTIVE
-                or contract.project_id is not None):
-            self.repository.add_contract(contract, project)
+    def add_contract(self, contract_id: int, project_id: int):
+        pass
 
     def active_contracts_count(self, project):
         return self.repository.active_contracts_count(project=project)
