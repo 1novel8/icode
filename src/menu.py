@@ -35,12 +35,6 @@ class ProjectActions:
         except ValueError:
             print('Данные введены некорректно')
 
-        contract = contract_service.get_by_id(contract_id)
-        project = project_service.get_by_id(project_id)
-
-
-
-
 
 class ContractActions:
     @get_session
@@ -54,6 +48,11 @@ class ContractActions:
     def contract_list(self, session):
         service = ContractService(session=session)
         service.print_contracts()
+
+    @get_session
+    def contract_submit(self, session):
+        service = ContractService(session=session)
+        service.submit()
 
 
 class Menu(
@@ -103,6 +102,7 @@ class Menu(
             },
             2: {
                 1: self.contract_create,
+                2: self.contract_submit,
                 4: self.back,
 
                 11: self.project_list,
