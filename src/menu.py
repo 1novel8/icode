@@ -1,3 +1,5 @@
+from src.exceptions import NotFoundException, StatusException, NoActiveContractsException, NoProjectRelatedException, \
+    WrongProjectRelatedException
 from src.handlers.contract import ContractHandlersMixin
 from src.handlers.project import ProjectHandlersMixin
 
@@ -41,7 +43,8 @@ class Menu(
             },
             1: {
                 1: self.project_create,
-                2: self.add_contract,
+                2: self.project_add_contract,
+                3: self.project_close_contract,
                 4: self.back,
 
                 11: self.project_list,
@@ -50,6 +53,7 @@ class Menu(
             2: {
                 1: self.contract_create,
                 2: self.contract_submit,
+                3: self.contract_close,
                 4: self.back,
 
                 11: self.project_list,
@@ -64,13 +68,23 @@ class Menu(
                 action = int(input())
                 self.action_handler(action)
             except ValueError:
-                print('Данные введены некорректно')
+                print('!!!Данные введены некорректно!!!')
+            except NotFoundException:
+                print('!!!Не удалось найти объект с этим id!!!')
+            except StatusException:
+                print('!!!Проверьте статус договора!!!')
+            except NoActiveContractsException:
+                print("!!!У вас нет ни одного активного договора!!!")
+            except NoProjectRelatedException:
+                print('!!!У договора нет связанного с ним проекта для завершения!!!')
+            except WrongProjectRelatedException:
+                print('!!!Этот договора не связан с этим проектом!!!')
 
     def action_handler(self, action):
         if self.position in self.main_switch.keys() and action in self.main_switch[self.position].keys():
             self.main_switch[self.position][action]()
         else:
-            print('Данные введены некорректно')
+            raise ValueError
 
     def back(self):
         self.position = 0

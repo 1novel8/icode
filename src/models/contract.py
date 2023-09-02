@@ -2,14 +2,15 @@ from datetime import datetime
 
 from sqlalchemy.orm import relationship
 
-from src.settings import Base, engine
+from src.settings import Base
 from src.enums import Status
 
-from sqlalchemy import Column, String, Integer, DateTime, Enum, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, Enum, ForeignKey, MetaData
 
 
 class Contract(Base):
     __tablename__ = 'contracts'
+    metadata = Base.metadata
 
     id = Column(Integer, primary_key=True, index=True, unique=True)
     name = Column(String)
@@ -20,5 +21,3 @@ class Contract(Base):
 
     project = relationship("Project", back_populates="contracts")
 
-
-Base.metadata.create_all(engine)

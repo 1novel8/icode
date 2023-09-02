@@ -9,3 +9,6 @@ class ProjectRepository(BaseRepository):
     def add_contract(self, contract: Contract, project: Project):
         project.contracts.append(contract)
 
+    def list(self) -> list:
+        projects = self.session.query(self.model).all()
+        return projects
