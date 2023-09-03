@@ -8,7 +8,6 @@
   POSTGRES_HOST_AUTH_METHOD=trust
   POSTGRES_PORT=5432
   POSTGRES_HOST=localhost
-  DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
   TIMEZONE=Europe/Minsk
   ```
 3. Запустить базу с помощью Docker
