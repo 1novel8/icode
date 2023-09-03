@@ -1,5 +1,5 @@
 from menu import Menu
-from src.settings import engine, Base
+from src.session import engine, Base
 
 
 def init_db():

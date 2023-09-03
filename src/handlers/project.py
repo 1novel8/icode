@@ -1,7 +1,7 @@
 from src.exceptions import ContractNotAvailableException, NoActiveContractsException, ActiveContractsLimitException
 from src.services.contract import ContractService
 from src.services.project import ProjectService
-from src.settings import get_session
+from src.session import get_session
 
 
 class ProjectHandlersMixin:

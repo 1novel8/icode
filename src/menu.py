@@ -81,6 +81,8 @@ class Menu(
                 print('!!!У договора нет связанного с ним проекта для завершения!!!')
             except WrongProjectRelatedException:
                 print('!!!Этот договора не связан с этим проектом!!!')
+            # except Exception:
+            #     print('!!!Что-то не так, появилось непонятное исключение!!!')
 
     def action_handler(self, action):
         if self.position in self.main_switch.keys() and action in self.main_switch[self.position].keys():

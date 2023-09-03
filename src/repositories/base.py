@@ -1,10 +1,19 @@
-from src.exceptions import NotFoundException
+from sqlalchemy.orm import Session
+
+from src.exceptions import NotFoundException, NoSessionException
+
 
 class BaseRepository:
     model = None
 
     def __init__(self, **kwargs):
-        self.session = kwargs.get('session')
+        try:
+            self.session = kwargs.get('session')
+            if not isinstance(self.session, Session):
+                raise NoSessionException
+        except NoSessionException:
+            print('!!!Вы не передали сессию в репозиторий!!!')
+            exit()
 
     def get_by_id(self, pk: int):
         obj = self.session.query(self.model).get(pk)

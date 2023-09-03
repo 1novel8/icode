@@ -1,7 +1,6 @@
-from src.exceptions import NoProjectRelatedException
 from src.services.contract import ContractService
 
-from src.settings import get_session
+from src.session import get_session
 
 
 class ContractHandlersMixin:

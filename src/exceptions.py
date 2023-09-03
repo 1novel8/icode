@@ -25,3 +25,7 @@ class WrongProjectRelatedException(Exception):
 
 class NoActiveContractsException(Exception):
     pass
+
+
+class NoSessionException(Exception):
+    pass
