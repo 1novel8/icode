@@ -1,7 +1,9 @@
-from src.exceptions import NotFoundException, StatusException, NoActiveContractsException, NoProjectRelatedException, \
-    WrongProjectRelatedException
 from src.handlers.contract import ContractHandlersMixin
 from src.handlers.project import ProjectHandlersMixin
+from src.exceptions import (NotFoundException,
+                            StatusException,
+                            NoActiveContractsException,
+                            NoProjectRelatedException, WrongProjectRelatedException)
 
 
 class Menu(
@@ -10,27 +12,27 @@ class Menu(
 ):
     def __init__(self):
         self.position = 0
-        self.actions = {
-            0: 'Waiting for action:\n'
-               '1 - Project\n'
-               '2 - Contract\n'
-               '3 - Exit\n'
-               '11 - project list\n'
-               '22 - contract list\n',
-            1: 'Project. Waiting for action:\n'
-               '1 - create\n'
-               '2 - add contract\n'
-               '3 - close contract\n'
-               '4 - back\n'
-               '11 - project list\n'
-               '22 - contract list\n',
-            2: 'Contract. Waiting for action:\n'
-               '1 - create\n'
-               '2 - submit contract\n'
-               '3 - close contract\n'
-               '4 - back\n'
-               '11 - project list\n'
-               '22 - contract list\n',
+        self.action_switch = {
+            0: 'Ожидается действие:\n'
+               '1 - Проект\n'
+               '2 - Договор\n'
+               '3 - Выход\n'
+               '11 - Список проектов\n'
+               '22 - Список договоров\n',
+            1: 'Проекты. Ожидается действие:\n'
+               '1 - Создать\n'
+               '2 - Добавить договор\n'
+               '3 - Закрыть договор\n'
+               '4 - Назад\n'
+               '11 - Список проектов\n'
+               '22 - Список договоров\n',
+            2: 'Договоры. Ожидается действие:\n'
+               '1 - Создать\n'
+               '2 - Подтвердить договор\n'
+               '3 - Закрыть договор\n'
+               '4 - Назад\n'
+               '11 - Список проектов\n'
+               '22 - Список договоров\n',
         }
         self.main_switch = {
             0: {
@@ -64,7 +66,7 @@ class Menu(
     def start(self):
         while True:
             try:
-                print(self.actions[self.position])
+                print(self.action_switch[self.position])
                 action = int(input())
                 self.action_handler(action)
             except ValueError:

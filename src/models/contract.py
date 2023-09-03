@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from src.settings import Base
 from src.enums import Status
 
-from sqlalchemy import Column, String, Integer, DateTime, Enum, ForeignKey, MetaData
+from sqlalchemy import Column, String, Integer, DateTime, Enum, ForeignKey
 
 
 class Contract(Base):

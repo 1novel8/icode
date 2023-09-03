@@ -1,4 +1,3 @@
-from src.enums import Status
 from src.models.contract import Contract
 from src.models.project import Project
 from src.repositories.project import ProjectRepository

@@ -1,5 +1,3 @@
-from src.models.contract import Contract
-
 
 class BaseService:
     repo = None

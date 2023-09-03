@@ -1,10 +1,13 @@
 from datetime import datetime
 
 from src.enums import Status
-from src.exceptions import StatusException, ContractNotAvailableException, NoProjectRelatedException, WrongProjectRelatedException
 from src.models.contract import Contract
 from src.repositories.contract import ContractRepository
 from src.services.base import BaseService
+from src.exceptions import (StatusException,
+                            ContractNotAvailableException,
+                            NoProjectRelatedException,
+                            WrongProjectRelatedException)
 
 
 class ContractService(BaseService):
@@ -15,11 +18,12 @@ class ContractService(BaseService):
         if contract.status != Status.ACTIVE:
             raise StatusException
 
-        project_id = kwargs.get('party_id', None)
+        project_id = kwargs.get('project_id', None)
         if contract.project_id is None:
             raise NoProjectRelatedException
         if contract.project_id != project_id:
             raise WrongProjectRelatedException
+
         self.repository.set_status(contract, status=Status.CLOSED)
         contract.finished_at = datetime.now()
 

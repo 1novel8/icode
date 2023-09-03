@@ -1,6 +1,4 @@
 from src.exceptions import NotFoundException
-from src.models.project import Project
-
 
 class BaseRepository:
     model = None

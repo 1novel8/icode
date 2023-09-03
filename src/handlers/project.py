@@ -60,4 +60,4 @@ class ProjectHandlersMixin:
         contract_id = int(input('Введите id договора'))
         contract = contract_service.get_by_id(contract_id)
 
-        contract_service.close(pk=contract_id)
+        contract_service.close(pk=contract_id, project_id=project_id)
